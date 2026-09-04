@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classic Business Centre (CBC Goa) | Premier Print & Document Solutions</title>
+  <meta name="description" content="CBC Goa offers high-precision digital printing, architectural plotting, large-format banners, stickers, hard binding, and copying across 4 locations in Goa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="light-theme">
+
+  <!-- Core Gateway Modal (Branch Switcher Lock) -->
+  <div id="branchModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="cmyk-strip"></div>
+        <h2>Welcome to Classic Business Centre</h2>
+        <p>Which Classic Business Centre branch are you visiting or ordering from today?</p>
+      </div>
+      <div class="branch-grid-modal" id="modalBranchList">
+        <!-- Injected dynamically via JS -->
+      </div>
+      <div class="modal-footer">
+        <small>💡 Your selected branch updates all direct WhatsApp ordering links and contact info automatically.</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Header Nav -->
+  <header class="site-header">
+    <div class="container header-content">
+      <a href="#hero" class="brand-logo">
+        <div class="logo-mark">
+          <span class="cmyk-dot cyan"></span>
+          <span class="cmyk-dot magenta"></span>
+          <span class="cmyk-dot yellow"></span>
+          <span class="cmyk-dot key"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Classic Business Centre</span>
+          <span class="brand-tag">Goa's Print & Design Hub</span>
+        </div>
+      </a>
+
+      <!-- Active Branch Selector Switcher -->
+      <button id="headerBranchBadge" class="active-branch-badge" onclick="openBranchModal()">
+        <span class="pin-icon">📍</span>
+        <span id="activeBranchName">Select Branch</span>
+        <span class="change-btn">[Change]</span>
+      </button>
+
+      <nav class="main-nav">
+        <a href="#services">Services</a>
+        <a href="#machinery">Machinery Fleet</a>
+        <a href="#order-builder">Order Builder</a>
+        <a href="#prepress">Pre-Press Guide</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#branches">Branches</a>
+      </nav>
+
+      <div class="header-actions">
+        <a id="headerWhatsappBtn" href="#" target="_blank" rel="noopener" class="btn btn-magenta btn-sm">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 2.11-.65 4.07-1.76 5.68L21.5 22l-4.48-1.18A9.94 9.94 0 0 1 12 22a10 10 0 0 1-10-10A10 10 0 0 1 12 2z"/></svg>
+          Order via WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-text-content">
+          <div class="cmyk-badge">
+            <span class="cmyk-square cyan">C</span>
+            <span class="cmyk-square magenta">M</span>
+            <span class="cmyk-square yellow">Y</span>
+            <span class="cmyk-square key">K</span>
+            <span class="badge-label">Ultra-High Precision Printing</span>
+          </div>
+          <h1>Fast, High-Precision Print & Document Solutions in Goa.</h1>
+          <p class="hero-subhead">
+            Goa's premier print house for architectural blueprints, business cards, vinyl banners, hard binding, custom stickers, and high-volume digital prints across 4 strategic branch locations.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#order-builder" class="btn btn-magenta btn-lg">
+              <span>🚀 Start WhatsApp Order</span>
+            </a>
+            <a href="#branches" class="btn btn-secondary btn-lg">
+              <span>📍 Locate Branch</span>
+            </a>
+          </div>
+          <!-- Live Stats Counter -->
+          <div class="hero-stats-row">
+            <div class="stat-card">
+              <span class="stat-number">4</span>
+              <span class="stat-label">Branches Across Goa</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">30+</span>
+              <span class="stat-label">Years Print Experience</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">Express</span>
+              <span class="stat-label">Same-Day Job Delivery</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">CMYK Color Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-card">
+            <img src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?auto=format&fit=crop&w=800&q=80" alt="High speed production digital printing press" class="hero-img">
+            <div class="live-branch-card">
+              <div class="live-indicator-dot open" id="heroBranchDot"></div>
+              <div>
+                <strong id="heroBranchTitle">Selected Branch Active</strong>
+                <p id="heroBranchStatus">Checking hours...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Showcase Grid -->
+    <section id="services" class="section-padding bg-slate">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="sub-eyebrow">Production Portfolio</span>
+          <h2>Comprehensive Print & Document Services</h2>
+          <p>Engineered for speed, durability, and flawless CMYK color accuracy.</p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="card-icon cyan-bg">🖨️</div>
+            <h3>Photocopying & High-Res Scanning</h3>
+            <p>High-volume B&W and full-color digital duplication, legal document copying, and archiving scans up to A0 jumbo size.</p>
+            <div class="card-tags">
+              <span>A4 to A0</span><span>Multi-Page PDF</span><span>Legal Copies</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="card-icon magenta-bg">🎨</div>
+            <h3>Digital & Offset Printing</h3>
+            <p>Vibrant business cards, corporate brochures, event flyers, letterheads, and high-volume commercial catalog production.</p>
+            <div class="card-tags">
+              <span>Spot UV Options</span><span>Same-Day Digital</span><span>Bulk Runs</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="card-icon yellow-bg">📐</div>
+            <h3>Architectural Plotting & Blueprints</h3>
+            <p>Ultra-crisp CAD plotting, engineering drawings, elevation schematics, and GIS map printing on high-grade blueprint media.</p>
+            <div class="card-tags">
+              <span>CAD Vector Line Work</span><span>A0 / A1 / A2</span><span>Folded or Rolled</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="card-icon key-bg">🏷️</div>
+            <h3>Custom Stickers, Labels & Decals</h3>
+            <p>Precision kiss-cut and die-cut stickers for product packaging, custom branding, gold foil, transparent vinyl, and matte decals.</p>
+            <div class="card-tags">
+              <span>Waterproof</span><span>Glossy & Matte</span><span>Clear Vinyl</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="card-icon cyan-bg">🚩</div>
+            <h3>Flex Banners & Event Signage</h3>
+            <p>Heavy-duty outdoor flex, starflex, eco-solvent vinyl posters, canvas art prints, glow sign boards, and retractable standees.</p>
+            <div class="card-tags">
+              <span>Weatherproof</span><span>Eco-Solvent Ink</span><span>High DPI Banner</span>
+            </div>
+          </div>
+
+          <div class="service-card">
+            <div class="card-icon magenta-bg">📚</div>
+            <h3>Hard Binding, Spiral & Lamination</h3>
+            <p>Thesis binding with gold lettering, wiro binding, thermal booklet finishing, pouch lamination, and matte roll encapsulation.</p>
+            <div class="card-tags">
+              <span>Gold Embossing</span><span>Wiro / Spiral</span><span>Thermal Encapsulation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Machinery & Infrastructure Gallery -->
+    <section id="machinery" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="sub-eyebrow">Our Infrastructure</span>
+          <h2>Production Fleet & Machinery Showcase</h2>
+          <p>Equipped with industry-leading production hardware for crisp output and rapid turnaround.</p>
+        </div>
+
+        <div class="machinery-grid">
+          <div class="machine-card">
+            <div class="machine-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=700&q=80" alt="High speed production digital press" class="machine-img">
+              <span class="machine-badge">Digital Press Engine</span>
+            </div>
+            <div class="machine-info">
+              <h3>High-Speed Production Digital Color Presses</h3>
+              <p>Continuous CMYK laser production engines capable of delivering 100+ pages per minute with strict color consistency.</p>
+            </div>
+          </div>
+
+          <div class="machine-card">
+            <div class="machine-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=700&q=80" alt="Large format plotter printer" class="machine-img">
+              <span class="machine-badge">Large Format</span>
+            </div>
+            <div class="machine-info">
+              <h3>Wide-Format Eco-Solvent & Flex Plotters</h3>
+              <p>Industrial plotters with multi-pass print heads engineered for outdoor flex banners, vinyl graphics, and canvas prints.</p>
+            </div>
+          </div>
+
+          <div class="machine-card">
+            <div class="machine-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=700&q=80" alt="Laser cutter and engraver" class="machine-img">
+              <span class="machine-badge">Precision Finishing</span>
+            </div>
+            <div class="machine-info">
+              <h3>Precision Laser Cutter & Kiss-Cut Plotter</h3>
+              <p>Automated optical sensor plotters for exact sticker kiss-cutting, acrylic engraving, and custom shape contouring.</p>
+            </div>
+          </div>
+
+          <div class="machine-card">
+            <div class="machine-img-wrapper">
+              <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=700&q=80" alt="Automated booklet binding machine" class="machine-img">
+              <span class="machine-badge">Booklet & Binding</span>
+            </div>
+            <div class="machine-info">
+              <h3>Heavy-Duty Hardcover & Booklet Finishing Line</h3>
+              <p>Automatic spine creasing, hot-melt gluing, gold foil embossing, and hydraulic paper guillotines for pristine edges.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive WhatsApp Order Specs Builder -->
+    <section id="order-builder" class="section-padding bg-slate">
+      <div class="container">
+        <div class="builder-wrapper">
+          <div class="builder-header text-center">
+            <span class="sub-eyebrow">Instant Specs Generator</span>
+            <h2>Interactive WhatsApp Order Builder</h2>
+            <p>Select your specs below. Clicking submit will automatically generate a formatted order draft targeting your active branch.</p>
+          </div>
+
+          <form id="orderForm" class="order-form-card" onsubmit="handleOrderSubmit(event)">
+            <div class="form-grid">
+              
+              <!-- 1. Category Selection -->
+              <div class="form-group">
+                <label for="orderCategory">1. Select Category *</label>
+                <select id="orderCategory" class="form-control" required onchange="updateFinishOptions()">
+                  <option value="Document Print">Document Print / Photocopy</option>
+                  <option value="Large Format Banner">Large Format Banner / Poster</option>
+                  <option value="Sticker / Decal">Sticker / Packaging Decal</option>
+                  <option value="Business Cards">Business Cards / Marketing Cards</option>
+                  <option value="Hard Binding">Hardcover / Thesis / Spiral Binding</option>
+                  <option value="Architectural Blueprint">Architectural Blueprint / CAD Drawing</option>
+                </select>
+              </div>
+
+              <!-- 2. Finish / Material Type -->
+              <div class="form-group">
+                <label for="orderFinish">2. Select Finish / Material *</label>
+                <select id="orderFinish" class="form-control" required>
+                  <option value="Glossy Finish">Glossy Finish</option>
+                  <option value="Matte Premium">Matte Premium Finish</option>
+                  <option value="Waterproof Sticker Vinyl">Waterproof Sticker Vinyl</option>
+                  <option value="Heavy Duty Flex">Heavy Duty Flex Banner</option>
+                  <option value="Canvas Textured">Canvas Textured Media</option>
+                  <option value="Translucent Tracing Paper">Translucent Tracing Paper</option>
+                  <option value="Hardcover Gold Embossed">Hardcover Gold Embossed</option>
+                </select>
+              </div>
+
+              <!-- 3. Color Mode -->
+              <div class="form-group">
+                <label>3. Color Mode *</label>
+                <div class="radio-toggle-group">
+                  <label class="radio-card">
+                    <input type="radio" name="colorMode" value="Full Color (CMYK)" checked>
+                    <span>🎨 Full Color (CMYK)</span>
+                  </label>
+                  <label class="radio-card">
+                    <input type="radio" name="colorMode" value="Black & White (Monochrome)">
+                    <span>⬛ Black & White</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- 4. Dimensions & Quantity -->
+              <div class="form-group">
+                <label for="orderSize">4. Dimensions / Size</label>
+                <input type="text" id="orderSize" class="form-control" placeholder="e.g., A4, A0, 3ft x 2ft, 3.5 x 2 inches">
+              </div>
+
+              <div class="form-group">
+                <label for="orderQty">5. Quantity *</label>
+                <input type="number" id="orderQty" class="form-control" value="100" min="1" required>
+              </div>
+
+              <!-- Special Notes -->
+              <div class="form-group full-width">
+                <label for="orderNotes">6. Special Instructions & Cutting Notes</label>
+                <textarea id="orderNotes" class="form-control" rows="3" placeholder="Specify binding edge, corner rounding, perforations, or delivery deadline..."></textarea>
+              </div>
+
+              <!-- File Dropzone Preview -->
+              <div class="form-group full-width">
+                <label>7. Pre-Press File Attachment (Visual Preview)</label>
+                <div class="file-dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                  <input type="file" id="fileInput" hidden onchange="handleFileSelect(event)">
+                  <div class="dropzone-content" id="dropzoneContent">
+                    <span class="upload-icon">📁</span>
+                    <strong>Drag and drop your print file here, or click to browse</strong>
+                    <small>Supports PDF, AI, PSD, CDR, ZIP, PNG, JPG (Max 50MB preview)</small>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Material Note Box -->
+            <div class="material-notice-box">
+              <span>ℹ️ <strong>Note:</strong> Custom paper weights, specialty card stocks, and luxury textures are available for physical sample inspection directly at our branch counters.</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="builder-actions text-center">
+              <button type="submit" class="btn btn-magenta btn-xl shadow-glow">
+                <span>📲 Send Order Specs to <span id="submitBranchBtnLabel">Selected Branch</span> via WhatsApp</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pre-Press File Readiness Checklist (Accordion) -->
+    <section id="prepress" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="sub-eyebrow">Quality Assurance</span>
+          <h2>Pre-Press File Readiness Checklist</h2>
+          <p>Follow these 4 simple prepress guidelines to guarantee accurate colors and zero bleed issues.</p>
+        </div>
+
+        <div class="accordion-wrapper">
+          <div class="accordion-item active">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="acc-number">01</span>
+              <strong class="acc-title">File Format: Export as PDF/X-1a or Vector Source File</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>For best results, always export artwork as vector PDF files with all fonts converted to outlines/curves. We also accept Adobe Illustrator (.AI), Photoshop (.PSD), CorelDraw (.CDR), and uncompressed high-resolution TIFF/PNG images.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="acc-number">02</span>
+              <strong class="acc-title">Color Mode: Convert RGB to CMYK Color Profile</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>Digital presses process color using Cyan, Magenta, Yellow, and Key Black (CMYK). Designing in RGB may cause slight color shifts upon printing. Ensure your document setup color space is set to CMYK before exporting.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="acc-number">03</span>
+              <strong class="acc-title">Resolution & DPI: Minimum 300 DPI at 100% Scale</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>For crisp text and sharp graphic reproduction, ensure embedded images have an effective resolution of at least 300 DPI for standard documents and cards, and 150+ DPI for wide-format flex banners.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span class="acc-number">04</span>
+              <strong class="acc-title">Bleed Margins & Safety Zone: Add 3mm Bleed Margin</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>Include a 3mm (0.125 in) bleed margin on all cut edges where background colors or imagery extend to the border. Keep critical text and logos at least 4mm inside the safe margin line.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive FAQ Section -->
+    <section id="faqs" class="section-padding bg-slate">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="sub-eyebrow">Customer Support</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Quick answers to common questions regarding ordering, express timelines, and file submission.</p>
+        </div>
+
+        <div class="accordion-wrapper">
+          <div class="accordion-item active">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <strong class="acc-title">Can I submit my files via WhatsApp or Email?</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>Yes, absolutely! You can send files directly to your preferred branch's dedicated WhatsApp line or bring them on a flash drive to our counter. Large files can also be shared via Google Drive or WeTransfer links.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <strong class="acc-title">Do you offer emergency or express same-day printing?</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>Yes! Digital print jobs, CAD plotting, document photocopies, standard stickers, and hard bindings can frequently be fulfilled on the same day. Express queue options are available at the branch counter.</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <strong class="acc-title">What file formats do you accept?</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>We accept PDF, Adobe Illustrator (.AI), Photoshop (.PSD), CorelDraw (.CDR), high-resolution JPG, PNG, TIFF, and Microsoft Office documents (PDF export recommended for font preservation).</p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <strong class="acc-title">Can I select specialized paper types at the counter?</strong>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="accordion-body">
+              <p>Yes! Every CBC branch maintains physical swatch books featuring matte, glossy, textured linen, metallic shimmer, kraft paper, synthetic non-tearable media, and translucent tracing stocks for you to touch and feel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Branch Directory Section -->
+    <section id="branches" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="sub-eyebrow">Our Locations</span>
+          <h2>Four Strategic Branches Across Goa</h2>
+          <p>Visit or contact any of our fully equipped print centers today.</p>
+        </div>
+
+        <div class="branches-directory-grid" id="directoryBranchGrid">
+          <!-- Dynamically populated from js/branches.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 404 Error Simulation Modal (Playful Paper Jam) -->
+  <div id="error404Modal" class="modal-overlay hidden">
+    <div class="modal-card text-center jam-card">
+      <div class="jam-illustration">📑 ⚠️ 🖨️</div>
+      <h2>Paper Jam! Page Not Found (Error 404)</h2>
+      <p>Looks like the print head got misaligned or this page rolled off the tray!</p>
+      <div class="modal-actions">
+        <button onclick="close404Modal()" class="btn btn-magenta btn-lg">Return to Main Desk</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <div class="brand-logo">
+          <div class="logo-mark">
+            <span class="cmyk-dot cyan"></span>
+            <span class="cmyk-dot magenta"></span>
+            <span class="cmyk-dot yellow"></span>
+            <span class="cmyk-dot key"></span>
+          </div>
+          <span class="brand-title">Classic Business Centre</span>
+        </div>
+        <p class="footer-desc">
+          Goa's trusted document design, printing, blueprint plotting, and large-format printing hub with 4 locations across Panjim, Mapusa, and Porvorim.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Branches</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="selectBranch('panjim-mg')">Panjim – M.G. Road</a></li>
+          <li><a href="javascript:void(0)" onclick="selectBranch('panjim-patto')">Panjim – Patto Plaza</a></li>
+          <li><a href="javascript:void(0)" onclick="selectBranch('mapusa')">Mapusa – Council Area</a></li>
+          <li><a href="javascript:void(0)" onclick="selectBranch('porvorim')">Porvorim – Housing Board</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#services">Services Portfolio</a></li>
+          <li><a href="#machinery">Machinery Fleet</a></li>
+          <li><a href="#order-builder">WhatsApp Order Builder</a></li>
+          <li><a href="#prepress">Pre-Press Checklist</a></li>
+          <li><a href="javascript:void(0)" onclick="open404Modal()">Simulate 404 Page Jam</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Current Active Branch</h4>
+        <div class="active-branch-footer-box" id="footerActiveBranchBox">
+          <!-- Updated via JS -->
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container text-center">
+        <p>&copy; 2026 Classic Business Centre (CBC Goa). All Rights Reserved. Light Theme UI Architecture.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/branches.js"></script>
+  <script src="js/order-builder.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
